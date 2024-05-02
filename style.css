@@ -408,6 +408,8 @@ footer {
     width: 60%;
     height: 70%;
   }
+  /* ----- */
+  /* About me Container */
   .about-me-container {
     flex-direction: column;
     flex-wrap: wrap-reverse;
@@ -416,4 +418,10 @@ footer {
     height: 70%;
     width: 60%;
   }
+  /* ------ */
+  /* Vertical line in summary container */
+  .vertical-line {
+    display: none;
+  }
 }
+/* ------------- */
