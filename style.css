@@ -27,6 +27,9 @@ body {
   gap: 12px;
   flex-wrap: wrap;
 }
+section {
+  margin-top: 5rem;
+}
 /* Navigation BAr */
 header {
   position: sticky;
@@ -69,6 +72,7 @@ header {
 }
 ul {
   list-style: none;
+  padding-inline-start: 0px;
 }
 .nav-items a {
   text-decoration: none;
@@ -81,19 +85,31 @@ ul {
 /* Hero Section */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "intro image";
   justify-items: center;
   align-items: center;
 }
 .hero-section {
   background-color: #ff4600;
   border-radius: 12px;
-  margin: 4rem 0;
-  height: 60vh;
+  margin: 5rem 0;
+  max-height: 80vh;
 }
 .intro-text {
+  grid-area: intro;
+  flex-direction: column;
   color: white;
   padding: 8px;
+  margin-left: 10vw;
+}
+.intro-text div span {
+  font-weight: Bold;
+  font-size: 1.5rem;
+}
+.intro-text .tag {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  letter-spacing: 3px;
 }
 .download-btn {
   background-color: black;
@@ -102,15 +118,23 @@ ul {
   padding: 8px;
   border: none;
 }
-.download-btn :hover {
+.download-btn:hover {
   cursor: pointer;
+  background: rgb(131, 240, 240);
 }
+
 .image-grid-item {
-  margin: -20 rem;
+  grid-area: image;
+  justify-content: flex-end;
+  align-items: left;
+  margin: -4rem 0;
 }
 .image-grid-item img {
-  height: 110%;
-  width: 80%;
+  height: 100%;
+}
+
+/* Responsive design -- Mobile view */
+@media (max-width: 760px) {
 }
 /* ------ */
 /* Summary section */
@@ -120,6 +144,7 @@ ul {
   padding: 16px;
   justify-content: space-around;
   background-color: white;
+  margin-top: 7rem;
 }
 .summary-container i {
   color: #ff4600;
@@ -164,10 +189,15 @@ ul {
   height: 250px;
   border-radius: 12px;
 }
+.recent-work-card:hover {
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
 .card-image {
   width: 100%;
   height: 60%;
 }
+
 .card-image img {
   width: 100%;
   height: 100%;
@@ -180,15 +210,20 @@ ul {
   margin-top: 12px;
   margin-bottom: 12px;
 }
+.card-icons:hover {
+  color: #ff4600;
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
 .recent-work-card h4,
 p {
   padding: 0 12px;
   margin: 0;
 }
 /*  ---*/
-/* Abput me section */
+/* About me section */
 .about-me-section {
-  background-color: bisque;
+  background-color: #4ce0d2;
   margin: 16px -35px;
   padding: 12px;
 }
@@ -202,8 +237,27 @@ p {
 .about-me-container img {
   width: 100%;
   height: 100%;
-  flex-basis: 100%;
+}
+h3 {
+  letter-spacing: 1.5px;
+  font-weight: bold;
+  padding: 12px;
   text-align: center;
+}
+.about-me-container .tag {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+}
+.about-me-container .tag + div > span {
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+}
+.about-me-container .tag + div > span:hover {
+  background: grey;
+  cursor: pointer;
+  transform: scale(1.3);
+  transition: all 0.5s;
 }
 /* ---- */
 /* Social Container */
@@ -238,8 +292,17 @@ footer {
   height: 300px;
 }
 .footer-container {
-  padding: 64px;
+  padding: 3rem;
 }
+
+.footer-link li a {
+  text-decoration: none;
+  color: white;
+}
+.footer-link li a:hover {
+  color: red;
+}
+
 /* ----- */
 /* Go to top Section */
 .go-to-top {
@@ -262,13 +325,10 @@ footer {
 .dark-mode-toggle {
   position: fixed;
   top: 7rem;
-  left: 8px;
+  left: 3rem;
   cursor: pointer;
 }
-.dark-mode-toggle i {
-  color: var(--text-color);
-}
-.dark-mode-toggle :hover {
+.dark-mode-toggle:hover {
   cursor: pointer;
   color: red;
   transform: scale(1.5);
@@ -279,8 +339,7 @@ footer {
 }
 
 #dark-mode:checked + header,
-#dark-mode:checked ~ .wrapper-container,
-#dark-mode:checked ~ i {
+#dark-mode:checked ~ .wrapper-container {
   /* background-color: rgb(20, 20, 20); */
   --bg-color: var(--dark-bg-color);
   --text-color: var(--dark-text-color);
@@ -304,6 +363,7 @@ footer {
   display: none;
 }
 @media (max-width: 760px) {
+  /* Hamburger menu */
   .side-menu {
     display: block;
     position: Absolute;
@@ -319,6 +379,7 @@ footer {
   .side-nav-items {
     flex-direction: column;
     align-items: start;
+    padding: 0 24px;
   }
   .side-nav-items a {
     text-decoration: none;
@@ -329,5 +390,30 @@ footer {
   }
   #menu:checked + .side-menu {
     left: calc(100vw - 150px);
+  }
+
+  /* ----- */
+  /* Hero Section */
+  .hero-section {
+    grid-template-areas:
+      "image"
+      "intro";
+  }
+  .image-grid-item {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .image-grid-item img {
+    width: 60%;
+    height: 70%;
+  }
+  .about-me-container {
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+  }
+  .about-me-container img {
+    height: 70%;
+    width: 60%;
   }
 }
